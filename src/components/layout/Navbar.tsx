@@ -35,9 +35,9 @@ const Navbar: React.FC = () => {
     <header
       className={`
         fixed top-0 left-0 right-0 z-50
-        transition-all duration-300 ease-in-out
+        transition-all duration-300 var(--ease-apple)
         ${isScrolled
-          ? 'glass shadow-lg shadow-noir/5 py-3'
+          ? 'glass shadow-sm border-b border-white/20 py-3'
           : 'bg-transparent py-5'
         }
       `}
@@ -45,12 +45,12 @@ const Navbar: React.FC = () => {
     >
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between" aria-label="Main navigation">
         {/* Logo */}
-        <a href="#" className="flex items-center gap-2 group" aria-label="FinGuard AI Home">
+        <a href="#" className="flex items-center gap-2 group" aria-label="AetherFlow AI Home">
           <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-forsythia to-saffron flex items-center justify-center transition-transform duration-200 ease-out group-hover:scale-105">
-            <span className="font-heading font-bold text-noir text-lg">F</span>
+            <span className="font-heading font-bold text-noir text-lg">A</span>
           </div>
           <span className="font-heading font-bold text-xl text-noir">
-            Fin<span className="text-nocturnal">Guard</span>
+            Aether<span className="text-nocturnal">Flow</span>
           </span>
         </a>
 
@@ -60,7 +60,7 @@ const Navbar: React.FC = () => {
             <a
               key={link.href}
               href={link.href}
-              className="font-body text-sm font-medium text-noir/70 hover:text-nocturnal transition-colors duration-150 ease-out relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-forsythia after:transition-all after:duration-200 hover:after:w-full"
+              className="group font-body text-sm font-medium text-noir/70 hover:text-nocturnal transition-colors duration-300 var(--ease-apple) relative after:absolute after:bottom-[-4px] after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-[2px] after:bg-forsythia after:opacity-0 hover:after:w-full hover:after:opacity-100 after:transition-all after:duration-300 after:var(--ease-apple)"
               role="menuitem"
             >
               {link.label}

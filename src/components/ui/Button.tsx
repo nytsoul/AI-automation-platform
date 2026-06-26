@@ -15,14 +15,10 @@ interface ButtonProps {
 }
 
 const variants = {
-  primary:
-    'bg-forsythia text-noir hover:bg-saffron font-semibold shadow-lg shadow-forsythia/20 hover:shadow-saffron/30',
-  secondary:
-    'bg-nocturnal text-arctic hover:bg-noir-light font-semibold shadow-lg shadow-nocturnal/20',
-  outline:
-    'border-2 border-forsythia text-forsythia hover:bg-forsythia hover:text-noir font-semibold',
-  ghost:
-    'text-nocturnal hover:bg-nocturnal/10 font-medium',
+  primary: "bg-forsythia text-noir hover:bg-forsythia-light shadow-[0_0_15px_rgba(255,200,1,0.2)] hover:shadow-glow-forsythia hover:-translate-y-0.5",
+  secondary: "bg-noir text-arctic hover:bg-noir-light shadow-premium hover:shadow-premium-hover hover:-translate-y-0.5",
+  outline: "border-2 border-noir/10 text-noir hover:border-noir/20 hover:bg-noir/5 hover:-translate-y-0.5",
+  ghost: "text-noir hover:bg-noir/5",
 };
 
 const sizes = {
@@ -41,27 +37,34 @@ const Button: React.FC<ButtonProps> = ({
   id,
 }) => {
   const classes = `
-    inline-flex items-center justify-center gap-2
-    transition-all duration-200 ease-out
-    cursor-pointer select-none
-    focus-visible:outline-2 focus-visible:outline-forsythia focus-visible:outline-offset-2
-    active:scale-[0.98]
+    relative group inline-flex items-center justify-center font-body font-medium rounded-lg transition-all duration-300 var(--ease-apple) focus-visible:outline-none overflow-hidden select-none active:scale-[0.98]
     ${variants[variant]}
     ${sizes[size]}
     ${className}
   `;
 
+  const content = (
+    <>
+      {(variant === 'primary' || variant === 'secondary') && (
+        <div className="absolute inset-0 -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none" />
+      )}
+      <span className="relative z-10 flex items-center justify-center transition-transform duration-300 group-hover:translate-x-0.5">
+        {children}
+      </span>
+    </>
+  );
+
   if (href) {
     return (
       <a href={href} className={classes} id={id}>
-        {children}
+        {content}
       </a>
     );
   }
 
   return (
     <button onClick={onClick} className={classes} id={id} type="button">
-      {children}
+      {content}
     </button>
   );
 };

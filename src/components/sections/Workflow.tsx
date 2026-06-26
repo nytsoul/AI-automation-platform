@@ -7,10 +7,16 @@ import SectionWrapper from '../ui/SectionWrapper';
 import { WORKFLOW_STEPS } from '../../data/content';
 import { ICON_MAP } from '../../assets/icons/iconMap';
 
+const DigitalWaveScene = React.lazy(() => import('../three/DigitalWaveScene'));
+
 const Workflow: React.FC = () => {
   return (
-    <SectionWrapper id="workflow" dark>
-      <div className="text-center mb-16">
+    <SectionWrapper id="workflow" dark className="relative">
+      <React.Suspense fallback={null}>
+        <DigitalWaveScene />
+      </React.Suspense>
+      
+      <div className="relative z-10 text-center mb-16">
         <span className="inline-block font-body text-xs font-semibold text-forsythia uppercase tracking-widest mb-4 px-3 py-1 bg-forsythia/10 rounded-full">
           How It Works
         </span>
@@ -23,7 +29,7 @@ const Workflow: React.FC = () => {
         </p>
       </div>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+      <div className="relative z-10 grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
         {WORKFLOW_STEPS.map((step, index) => {
           const IconComponent = ICON_MAP[step.icon];
           return (

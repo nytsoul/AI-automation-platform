@@ -8,6 +8,8 @@ import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
 import { useCountUp } from '../../hooks/useCountUp';
 import type { StatItem } from '../../types';
 
+const ParticleGalaxyScene = React.lazy(() => import('../three/ParticleGalaxyScene'));
+
 // ── Individual Stat Counter ─────────────────────────────────
 interface StatCounterProps {
   stat: StatItem;
@@ -46,6 +48,10 @@ const Statistics: React.FC = () => {
       className="relative py-20 md:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-nocturnal via-noir to-nocturnal overflow-hidden"
       aria-label="Platform statistics"
     >
+      <React.Suspense fallback={null}>
+        <ParticleGalaxyScene />
+      </React.Suspense>
+      
       {/* Background pattern */}
       <div className="absolute inset-0 opacity-5" aria-hidden="true"
         style={{

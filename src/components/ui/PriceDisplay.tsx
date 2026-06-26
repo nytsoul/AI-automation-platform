@@ -23,7 +23,10 @@ const PriceDisplay: React.FC<PriceDisplayProps> = React.memo(({ tierName, curren
 
   return (
     <div className="flex items-baseline gap-1">
-      <span className="font-heading text-4xl lg:text-5xl font-bold tracking-tight">
+      <span 
+        key={`${cycle}-${currency}`}
+        className="font-heading text-4xl lg:text-5xl font-bold tracking-tighter animate-[scale-in_0.3s_var(--ease-spring)]"
+      >
         {computed.formatted}
       </span>
       <span className="font-body text-sm text-current opacity-50">

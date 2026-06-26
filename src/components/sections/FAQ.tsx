@@ -7,6 +7,8 @@ import React, { useState, useCallback, useRef, useEffect } from 'react';
 import { FAQ_ITEMS } from '../../data/content';
 import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
 
+const NeuralBackgroundScene = React.lazy(() => import('../three/NeuralBackgroundScene'));
+
 // ── Individual FAQ Item ─────────────────────────────────────
 interface FAQItemProps {
   item: typeof FAQ_ITEMS[number];
@@ -27,11 +29,11 @@ const FAQAccordionItem: React.FC<FAQItemProps> = React.memo(({ item, isOpen, onT
 
   return (
     <article
-      className="border-b border-noir/10 last:border-b-0"
+      className={`border-b border-noir/10 last:border-b-0 transition-colors duration-300 var(--ease-apple) ${isOpen ? 'bg-mint/10' : 'hover:bg-noir/5'}`}
       style={{ animationDelay: `${index * 60}ms` }}
     >
       <button
-        className="w-full flex items-center justify-between py-5 sm:py-6 text-left group"
+        className="w-full flex items-center justify-between py-5 sm:py-6 px-4 text-left group"
         onClick={onToggle}
         aria-expanded={isOpen}
         aria-controls={`faq-answer-${item.id}`}
@@ -39,7 +41,7 @@ const FAQAccordionItem: React.FC<FAQItemProps> = React.memo(({ item, isOpen, onT
       >
         <h3 className={`
           font-heading text-base sm:text-lg font-semibold pr-8
-          transition-colors duration-200
+          transition-colors duration-300 var(--ease-apple)
           ${isOpen ? 'text-nocturnal' : 'text-noir group-hover:text-nocturnal'}
         `}>
           {item.question}
@@ -53,7 +55,7 @@ const FAQAccordionItem: React.FC<FAQItemProps> = React.memo(({ item, isOpen, onT
           strokeWidth={2}
           stroke="currentColor"
           className={`
-            w-5 h-5 flex-shrink-0 transition-transform duration-300 ease-in-out
+            w-5 h-5 flex-shrink-0 transition-transform duration-400 var(--ease-spring)
             ${isOpen ? 'rotate-180 text-forsythia' : 'text-noir/30'}
           `}
           aria-hidden="true"
@@ -97,7 +99,10 @@ const FAQ: React.FC = () => {
       className="relative py-20 md:py-28 px-4 sm:px-6 lg:px-8 bg-arctic"
       aria-labelledby="faq-heading"
     >
-      <div className={`max-w-3xl mx-auto transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+      <React.Suspense fallback={null}>
+        <NeuralBackgroundScene />
+      </React.Suspense>
+      <div className={`relative z-10 max-w-3xl mx-auto transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
         {/* Header */}
         <div className="text-center mb-12">
           <span className="inline-block font-body text-xs font-semibold text-forsythia uppercase tracking-widest mb-4 px-3 py-1 bg-forsythia/10 rounded-full">

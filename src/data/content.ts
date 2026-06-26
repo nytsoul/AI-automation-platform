@@ -84,7 +84,7 @@ export const TESTIMONIALS: Testimonial[] = [
     role: 'VP of Engineering',
     company: 'Quantix',
     quote:
-      'FinGuard transformed our data infrastructure. What used to take weeks of engineering time now happens automatically in minutes. The AI-powered routing alone saved us $2M annually.',
+      'AetherFlow transformed our data infrastructure. What used to take weeks of engineering time now happens automatically in minutes. The AI-powered routing alone saved us $2M annually.',
     avatar: 'SC',
     rating: 5,
   },
@@ -104,7 +104,7 @@ export const TESTIMONIALS: Testimonial[] = [
     role: 'Head of AI',
     company: 'SynapseAI',
     quote:
-      'Integration was seamless. FinGuard connected to our 47 different data sources in under an hour. The AI schema detection is genuinely magical — it understood our complex data models instantly.',
+      'Integration was seamless. AetherFlow connected to our 47 different data sources in under an hour. The AI schema detection is genuinely magical — it understood our complex data models instantly.',
     avatar: 'AP',
     rating: 5,
   },
@@ -114,7 +114,7 @@ export const TESTIMONIALS: Testimonial[] = [
     role: 'CTO',
     company: 'DataForge',
     quote:
-      'We evaluated every major data platform on the market. FinGuard was the only one that delivered on its promises. The predictive routing has eliminated our outage incidents completely.',
+      'We evaluated every major data platform on the market. AetherFlow was the only one that delivered on its promises. The predictive routing has eliminated our outage incidents completely.',
     avatar: 'JT',
     rating: 5,
   },
@@ -124,7 +124,7 @@ export const TESTIMONIALS: Testimonial[] = [
     role: 'Director of Operations',
     company: 'CloudPeak',
     quote:
-      'FinGuard is not just a tool — it is the backbone of our entire data strategy. The modular architecture lets us innovate at speeds we never thought possible.',
+      'AetherFlow is not just a tool — it is the backbone of our entire data strategy. The modular architecture lets us innovate at speeds we never thought possible.',
     avatar: 'EK',
     rating: 5,
   },
@@ -134,21 +134,21 @@ export const TESTIMONIALS: Testimonial[] = [
 export const FAQ_ITEMS: FAQItem[] = [
   {
     id: 'faq-1',
-    question: 'How does FinGuard\'s AI automation work?',
+    question: 'How does AetherFlow\'s AI automation work?',
     answer:
-      'FinGuard uses advanced machine learning models to analyze your data patterns, automatically configure processing pipelines, and continuously optimize performance. Our AI engine learns from your specific use cases to deliver increasingly accurate and efficient automation over time.',
+      'AetherFlow uses advanced machine learning models to analyze your data patterns, automatically configure processing pipelines, and continuously optimize performance. Our AI engine learns from your specific use cases to deliver increasingly accurate and efficient automation over time.',
   },
   {
     id: 'faq-2',
     question: 'What data sources can I connect?',
     answer:
-      'FinGuard supports 200+ integrations including all major databases (PostgreSQL, MySQL, MongoDB), cloud services (AWS, GCP, Azure), SaaS tools (Salesforce, HubSpot, Stripe), and custom APIs. Our AI auto-detects schemas and maps fields automatically.',
+      'AetherFlow supports 200+ integrations including all major databases (PostgreSQL, MySQL, MongoDB), cloud services (AWS, GCP, Azure), SaaS tools (Salesforce, HubSpot, Stripe), and custom APIs. Our AI auto-detects schemas and maps fields automatically.',
   },
   {
     id: 'faq-3',
-    question: 'Is my data secure with FinGuard?',
+    question: 'Is my data secure with AetherFlow?',
     answer:
-      'Absolutely. FinGuard is SOC 2 Type II certified and HIPAA compliant. All data is encrypted at rest (AES-256) and in transit (TLS 1.3). We offer dedicated infrastructure options for Enterprise customers with custom security requirements.',
+      'Absolutely. AetherFlow is SOC 2 Type II certified and HIPAA compliant. All data is encrypted at rest (AES-256) and in transit (TLS 1.3). We offer dedicated infrastructure options for Enterprise customers with custom security requirements.',
   },
   {
     id: 'faq-4',

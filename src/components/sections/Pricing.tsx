@@ -12,6 +12,7 @@ import Button from '../ui/Button';
 import type { Currency, BillingCycle, PricingTier } from '../../types';
 
 // ── Currency Switcher (isolated state) ──────────────────────
+const HolographicRingScene = React.lazy(() => import('../three/HolographicRingScene'));
 interface CurrencySwitcherProps {
   currency: Currency;
   onCurrencyChange: (c: Currency) => void;
@@ -28,9 +29,9 @@ const CurrencySwitcher: React.FC<CurrencySwitcherProps> = React.memo(({ currency
           onClick={() => onCurrencyChange(c.code)}
           className={`
             px-4 py-2 rounded-lg text-sm font-body font-medium
-            transition-all duration-200 ease-out
+            transition-all duration-300 var(--ease-apple)
             ${currency === c.code
-              ? 'bg-white text-noir shadow-sm'
+              ? 'bg-white text-noir shadow-premium'
               : 'text-noir/50 hover:text-noir/70'
             }
           `}
@@ -58,11 +59,11 @@ const BillingToggle: React.FC<BillingToggleProps> = React.memo(({ cycle, onCycle
       <button
         onClick={() => onCycleChange('monthly')}
         className={`
-          px-4 py-2 rounded-lg text-sm font-body font-medium
-          transition-all duration-200 ease-out
+          px-6 py-2 rounded-lg text-sm font-body font-medium
+          transition-all duration-300 var(--ease-apple)
           ${cycle === 'monthly'
-            ? 'bg-nocturnal text-arctic shadow-sm'
-            : 'text-noir/50 hover:text-noir/70'
+            ? 'bg-nocturnal text-arctic shadow-premium scale-105'
+            : 'text-noir/50 hover:text-noir/70 bg-transparent'
           }
         `}
         role="radio"
@@ -73,11 +74,11 @@ const BillingToggle: React.FC<BillingToggleProps> = React.memo(({ cycle, onCycle
       <button
         onClick={() => onCycleChange('annual')}
         className={`
-          relative px-4 py-2 rounded-lg text-sm font-body font-medium
-          transition-all duration-200 ease-out
+          relative px-6 py-2 rounded-lg text-sm font-body font-medium
+          transition-all duration-300 var(--ease-apple)
           ${cycle === 'annual'
-            ? 'bg-nocturnal text-arctic shadow-sm'
-            : 'text-noir/50 hover:text-noir/70'
+            ? 'bg-nocturnal text-arctic shadow-premium scale-105'
+            : 'text-noir/50 hover:text-noir/70 bg-transparent'
           }
         `}
         role="radio"
@@ -104,11 +105,10 @@ const PricingCard: React.FC<PricingCardProps> = React.memo(({ tier, currency, cy
   return (
     <article
       className={`
-        relative rounded-2xl p-8 flex flex-col
-        transition-all duration-300 ease-in-out
+        relative p-8 rounded-3xl flex flex-col h-full card-hover transition-all duration-300 var(--ease-apple)
         ${tier.highlighted
-          ? 'bg-gradient-to-br from-nocturnal to-noir text-arctic scale-[1.02] shadow-2xl shadow-nocturnal/20 border-2 border-forsythia/30 z-10'
-          : 'bg-white/60 border border-noir/10 text-noir card-hover'
+          ? 'bg-nocturnal text-arctic shadow-premium-hover scale-105 border-none'
+          : 'bg-white text-noir border border-noir/5 shadow-premium'
         }
       `}
       aria-label={`${tier.name} plan`}
@@ -211,7 +211,10 @@ const Pricing: React.FC = () => {
       className="relative py-20 md:py-28 px-4 sm:px-6 lg:px-8 bg-mint/30"
       aria-labelledby="pricing-heading"
     >
-      <div className={`max-w-7xl mx-auto transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+      <React.Suspense fallback={null}>
+        <HolographicRingScene />
+      </React.Suspense>
+      <div className={`relative z-10 max-w-7xl mx-auto transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
         {/* Section Header */}
         <div className="text-center mb-12">
           <span className="inline-block font-body text-xs font-semibold text-forsythia uppercase tracking-widest mb-4 px-3 py-1 bg-forsythia/10 rounded-full">

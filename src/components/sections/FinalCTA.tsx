@@ -7,6 +7,8 @@ import Button from '../ui/Button';
 import { ArrowTrendingUpIcon } from '../../assets/icons';
 import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
 
+const DataOrbScene = React.lazy(() => import('../three/DataOrbScene'));
+
 const FinalCTA: React.FC = () => {
   const [ref, isVisible] = useIntersectionObserver<HTMLElement>({ threshold: 0.1 });
 
@@ -16,6 +18,9 @@ const FinalCTA: React.FC = () => {
       className="relative py-24 md:py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-nocturnal via-noir to-nocturnal overflow-hidden"
       aria-labelledby="cta-heading"
     >
+      <React.Suspense fallback={null}>
+        <DataOrbScene />
+      </React.Suspense>
       {/* Decorative background */}
       <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
         <div className="absolute top-0 left-1/4 w-96 h-96 rounded-full bg-forsythia/5 blur-3xl" />
@@ -37,7 +42,7 @@ const FinalCTA: React.FC = () => {
         </h2>
 
         <p className="font-body text-lg sm:text-xl text-arctic/50 max-w-2xl mx-auto mb-10 leading-relaxed">
-          Join 500+ enterprises using FinGuard AI to automate workflows, eliminate bottlenecks, and unlock the full potential of their data.
+          Join 500+ enterprises using AetherFlow AI to automate workflows, eliminate bottlenecks, and unlock the full potential of their data.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

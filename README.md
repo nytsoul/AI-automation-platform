@@ -1,4 +1,4 @@
-# FinGuard AI — Intelligent Data Automation Platform
+# AetherFlow AI — Intelligent Data Automation Platform
 
 An award-winning, production-grade SaaS landing page built for the Frontend Hackathon.
 

@@ -36,7 +36,7 @@ const PlatformOverview: React.FC = () => {
           <span className="text-gradient">Reimagined</span>
         </h2>
         <p className="font-body text-lg text-noir/60 max-w-2xl mx-auto leading-relaxed">
-          FinGuard combines the power of AI with enterprise-grade infrastructure to deliver a data automation platform that thinks, adapts, and scales with your business.
+          AetherFlow combines the power of AI with enterprise-grade infrastructure to deliver a data automation platform that thinks, adapts, and scales with your business.
         </p>
       </div>
 

@@ -2,14 +2,15 @@
 // Hero Section — Above-the-fold hero with animated entrance
 // ============================================================
 
-import React, { lazy, Suspense, useState, useEffect } from 'react';
+import React, { lazy, Suspense, useState, useEffect, useRef } from 'react';
 import Button from '../ui/Button';
 import { ArrowTrendingUpIcon } from '../../assets/icons';
 
-const NeuralNetwork = lazy(() => import('./Hero/NeuralNetwork'));
+const HeroNeuralScene = lazy(() => import('../three/HeroNeuralScene'));
 
 const Hero: React.FC = () => {
   const [shouldLoadNetwork, setShouldLoadNetwork] = useState(false);
+  const dashboardRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Wait for text animations to finish before loading Three.js
@@ -20,6 +21,22 @@ const Hero: React.FC = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  // Mouse Parallax for Dashboard Visual
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!dashboardRef.current) return;
+      const { innerWidth, innerHeight } = window;
+      const x = (e.clientX / innerWidth - 0.5) * 15; // Max rotation 15deg
+      const y = (e.clientY / innerHeight - 0.5) * -15;
+      
+      // Use requestAnimationFrame natively inside CSS transitions, but we set style directly
+      dashboardRef.current.style.transform = `perspective(1000px) rotateX(${y}deg) rotateY(${x}deg)`;
+    };
+
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden pt-20" aria-labelledby="hero-heading">
       {/* Background gradient */}
@@ -27,9 +44,9 @@ const Hero: React.FC = () => {
       
       {/* Lazy Loaded Neural Network Visualization */}
       <Suspense fallback={null}>
-        {shouldLoadNetwork && <NeuralNetwork />}
+        {shouldLoadNetwork && <HeroNeuralScene />}
       </Suspense>
-
+      
       {/* Animated background orbs */}
       <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
         <div className="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-forsythia/10 blur-3xl animate-float" />
@@ -69,7 +86,7 @@ const Hero: React.FC = () => {
 
             {/* Description */}
             <p className="font-body text-lg sm:text-xl text-noir/60 leading-relaxed mb-8 max-w-lg animate-fade-in-up stagger-2">
-              FinGuard AI orchestrates complex workflows, processes billions of data points, and delivers real-time insights — all with zero manual configuration.
+              AetherFlow AI orchestrates complex workflows, processes billions of data points, and delivers real-time insights — all with zero manual configuration.
             </p>
 
             {/* CTAs */}
@@ -96,21 +113,26 @@ const Hero: React.FC = () => {
                 ))}
               </div>
               <p className="text-sm text-noir/50 font-body">
-                <span className="font-semibold text-noir/70">500+</span> enterprises trust FinGuard
+                <span className="font-semibold text-noir/70">500+</span> enterprises trust AetherFlow
               </p>
             </div>
           </div>
 
           {/* Right — Visual */}
           <div className="relative hidden lg:block animate-fade-in stagger-3" aria-hidden="true">
-            {/* Dashboard Card */}
-            <div className="relative glass-dark rounded-2xl p-6 shadow-2xl shadow-noir/20">
+            {/* Dashboard Card Container for 3D Transform */}
+            <div 
+              ref={dashboardRef} 
+              className="relative transition-transform duration-200 ease-out will-change-transform"
+              style={{ transformStyle: 'preserve-3d' }}
+            >
+              <div className="relative glass-dark rounded-2xl p-6 shadow-premium-hover border border-white/10" style={{ transform: 'translateZ(20px)' }}>
               {/* Top bar */}
               <div className="flex items-center gap-2 mb-6">
                 <div className="w-3 h-3 rounded-full bg-red-400/80" />
                 <div className="w-3 h-3 rounded-full bg-forsythia/80" />
                 <div className="w-3 h-3 rounded-full bg-green-400/80" />
-                <span className="ml-4 text-xs text-arctic/40 font-body">FinGuard Dashboard</span>
+                <span className="ml-4 text-xs text-arctic/40 font-body">AetherFlow Dashboard</span>
               </div>
 
               {/* Mock dashboard content */}
@@ -150,9 +172,10 @@ const Hero: React.FC = () => {
                 </div>
               </div>
             </div>
+          </div>
 
-            {/* Floating accent card */}
-            <div className="absolute -bottom-6 -left-6 glass rounded-xl p-4 shadow-lg animate-float" style={{ animationDelay: '1s' }}>
+            {/* Floating accent card (Extruded further in Z-space for parallax effect) */}
+            <div className="absolute -bottom-6 -left-6 glass rounded-xl p-4 shadow-premium animate-float" style={{ animationDelay: '1s', transform: 'translateZ(50px)' }}>
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-forsythia to-saffron flex items-center justify-center">
                   <ArrowTrendingUpIcon size={20} className="text-noir" />

@@ -14,6 +14,12 @@ export const PRICING_MATRIX: PricingMatrix = {
     EUR: 0.92,
   },
 
+  regionalTariffs: {
+    USD: 1.0,  // No extra tariff for US
+    INR: 1.18, // 18% GST / tariff for India
+    EUR: 1.05, // 5% VAT / tariff for Europe
+  },
+
   currencies: {
     USD: { symbol: '$', code: 'USD', locale: 'en-US' },
     INR: { symbol: '₹', code: 'INR', locale: 'en-IN' },

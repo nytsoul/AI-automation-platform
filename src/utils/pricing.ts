@@ -19,9 +19,11 @@ export function computePrice(
   if (!tier) throw new Error(`Tier "${tierName}" not found in pricing matrix`);
 
   const rate = matrix.currencyRates[currency];
+  const tariff = matrix.regionalTariffs[currency];
   const config = matrix.currencies[currency];
 
-  let amount = tier.baseMonthlyUSD * rate;
+  // Base computation: base rate * exchange rate * regional tariff
+  let amount = tier.baseMonthlyUSD * rate * tariff;
 
   if (cycle === 'annual') {
     amount = amount * (1 - matrix.annualDiscountPercent / 100);

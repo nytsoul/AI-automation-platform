@@ -39,6 +39,7 @@ export interface PricingTier {
 export interface PricingMatrix {
   tiers: PricingTier[];
   currencyRates: Record<Currency, number>;
+  regionalTariffs: Record<Currency, number>;
   currencies: Record<Currency, CurrencyConfig>;
   annualDiscountPercent: number;
 }

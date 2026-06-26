@@ -113,7 +113,7 @@ const HeroNeuralScene: React.FC = () => {
       let colorIndex = 0;
 
       const forsythia = new THREE.Color(0xffc801);
-      const arctic = new THREE.Color(0xf1f6f4);
+      const nocturnal = new THREE.Color(0x114c5a);
 
       for (let i = 0; i < PARTICLE_COUNT; i++) {
         for (let j = i + 1; j < PARTICLE_COUNT; j++) {
@@ -138,9 +138,9 @@ const HeroNeuralScene: React.FC = () => {
             lineColors[colorIndex++] = forsythia.g * intensity;
             lineColors[colorIndex++] = forsythia.b * intensity;
             
-            lineColors[colorIndex++] = arctic.r * intensity;
-            lineColors[colorIndex++] = arctic.g * intensity;
-            lineColors[colorIndex++] = arctic.b * intensity;
+            lineColors[colorIndex++] = nocturnal.r * intensity;
+            lineColors[colorIndex++] = nocturnal.g * intensity;
+            lineColors[colorIndex++] = nocturnal.b * intensity;
           }
         }
       }
@@ -179,7 +179,7 @@ const HeroNeuralScene: React.FC = () => {
   return (
     <div 
       ref={containerRef} 
-      className="absolute inset-0 z-0 opacity-60 mix-blend-screen pointer-events-none"
+      className="absolute inset-0 z-0 opacity-100 pointer-events-none"
       aria-hidden="true"
     />
   );

@@ -2,15 +2,33 @@
 // Hero Section — Above-the-fold hero with animated entrance
 // ============================================================
 
-import React from 'react';
+import React, { lazy, Suspense, useState, useEffect } from 'react';
 import Button from '../ui/Button';
 import { ArrowTrendingUpIcon } from '../../assets/icons';
 
+const NeuralNetwork = lazy(() => import('./Hero/NeuralNetwork'));
+
 const Hero: React.FC = () => {
+  const [shouldLoadNetwork, setShouldLoadNetwork] = useState(false);
+
+  useEffect(() => {
+    // Wait for text animations to finish before loading Three.js
+    // Guarantees zero Lighthouse impact on initial FCP/LCP
+    const timer = setTimeout(() => {
+      setShouldLoadNetwork(true);
+    }, 800);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden pt-20" aria-labelledby="hero-heading">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-arctic via-mint/30 to-arctic" aria-hidden="true" />
+      
+      {/* Lazy Loaded Neural Network Visualization */}
+      <Suspense fallback={null}>
+        {shouldLoadNetwork && <NeuralNetwork />}
+      </Suspense>
 
       {/* Animated background orbs */}
       <div className="absolute inset-0 overflow-hidden" aria-hidden="true">

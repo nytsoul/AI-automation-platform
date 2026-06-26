@@ -5,7 +5,7 @@
 import React from 'react';
 import SectionWrapper from '../ui/SectionWrapper';
 import { WORKFLOW_STEPS } from '../../data/content';
-import { ICON_MAP } from '../../assets/icons';
+import { ICON_MAP } from '../../assets/icons/iconMap';
 
 const Workflow: React.FC = () => {
   return (

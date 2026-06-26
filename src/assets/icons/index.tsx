@@ -129,22 +129,4 @@ export const StarIcon: React.FC<IconProps> = ({ className, size = defaultProps.s
   </svg>
 );
 
-// ── Icon Map for dynamic rendering ─────────────────────────
-export const ICON_MAP: Record<string, React.FC<IconProps>> = {
-  'arrow-path': ArrowPathIcon,
-  'arrow-trending-up': ArrowTrendingUpIcon,
-  'chart-pie': ChartPieIcon,
-  'chevron-down': ChevronDownIcon,
-  'chevron-left': ChevronLeftIcon,
-  'chevron-right': ChevronRightIcon,
-  'chevron-up-solid': ChevronUpSolidIcon,
-  'chevron-up': ChevronUpIcon,
-  'cog-8-tooth': Cog8ToothIcon,
-  'cube-16-solid': CubeSolidIcon,
-  'link-solid': LinkSolidIcon,
-  'link': LinkIcon,
-  'search': SearchIcon,
-  'x-mark': XMarkIcon,
-  'check': CheckIcon,
-  'star': StarIcon,
-};
+// End of icon definitions.

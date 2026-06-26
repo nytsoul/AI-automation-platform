@@ -6,8 +6,8 @@
 
 import React, { useState, useCallback, useRef, useEffect } from 'react';
 import { FEATURES } from '../../data/features';
-import { ICON_MAP } from '../../assets/icons';
-import { useMediaQuery } from '../../hooks/useMediaQuery';
+import { ICON_MAP } from '../../assets/icons/iconMap';
+import { useResizeObserver } from '../../hooks/useResizeObserver';
 import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
 
 // ── Bento Grid Item (Desktop) ───────────────────────────────
@@ -198,8 +198,9 @@ AccordionItem.displayName = 'AccordionItem';
 // ── Main BentoFeatures Component ────────────────────────────
 const BentoFeatures: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const isMobile = useMediaQuery('(max-width: 767px)');
   const [sectionRef, isVisible] = useIntersectionObserver<HTMLElement>({ threshold: 0.05 });
+  const containerRef = useRef<HTMLDivElement>(null);
+  const isMobile = useResizeObserver(containerRef, 768);
 
   const handleActivate = useCallback((index: number) => {
     setActiveIndex(index);
@@ -216,7 +217,7 @@ const BentoFeatures: React.FC = () => {
       className="relative py-20 md:py-28 px-4 sm:px-6 lg:px-8 bg-arctic"
       aria-labelledby="features-heading"
     >
-      <div className={`max-w-7xl mx-auto transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+      <div ref={containerRef} className={`max-w-7xl mx-auto transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
         {/* Section Header */}
         <div className="text-center mb-12 md:mb-16">
           <span className="inline-block font-body text-xs font-semibold text-forsythia uppercase tracking-widest mb-4 px-3 py-1 bg-forsythia/10 rounded-full">

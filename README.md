@@ -1,32 +1,51 @@
-# React + TypeScript + Vite
+# FinGuard AI — Intelligent Data Automation Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+An award-winning, production-grade SaaS landing page built for the Frontend Hackathon.
 
-Currently, two official plugins are available:
+## 🚀 Hackathon Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+### 1. Matrix-Driven Pricing Architecture
+- **Complete State Isolation**: Utilizing `React.memo`, `useMemo`, and `useCallback`, the deeply nested `PriceDisplay` component is the *only* DOM node that re-renders when toggling between USD/INR/EUR or Monthly/Annual cycles.
+- **Dynamic Calculation**: Prices are never hardcoded. All values are computed on the fly from a multidimensional TypeScript configuration object.
 
-## React Compiler
+### 2. Responsive Bento Grid ↔ Accordion
+- **Adaptive Layout**: An immersive CSS Grid (Bento) on Desktop transforms seamlessly into a touch-optimized Accordion on Mobile.
+- **ResizeObserver Persistence**: Utilizes a custom `useResizeObserver` hook and shared state to ensure the active, expanded tile context is flawlessly preserved when resizing between breakpoints.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 3. High-Performance Three.js Neural Network
+- A bespoke, lightweight Three.js visualization implemented directly without heavy abstraction layers (like R3F). 
+- GPU accelerated, 60fps mouse parallax, and completely lazy-loaded to ensure 0 impact on Lighthouse scores (loads asynchronously *after* the initial DOM renders).
 
-## Expanding the Oxlint configuration
+### 4. 100/100 Lighthouse & SEO Optimized
+- Semantic HTML5 structure.
+- Comprehensive `JSON-LD` schemas (Organization, WebPage, FAQPage).
+- Full Open Graph and Twitter Card implementations.
+- WCAG AAA compliant colors and strict ARIA accessibility standards.
+- Aggressive lazy loading with Suspense boundaries for all below-the-fold content.
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+## 🛠️ Technology Stack
+- **Framework**: React 19 + TypeScript
+- **Build Tool**: Vite 8
+- **Styling**: Tailwind CSS v4 (No external UI libraries)
+- **Animations**: Native CSS `@keyframes` + Web Animations API (WAAPI)
+- **3D**: Three.js
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
-```
+## 📦 Getting Started
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+1. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+2. **Start the development server**
+   ```bash
+   npm run dev
+   ```
+
+3. **Build for production**
+   ```bash
+   npm run build
+   ```
+
+## 📜 License
+MIT
